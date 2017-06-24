@@ -1,28 +1,33 @@
 package com.merkmod.mosiqi.application
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
-import com.merkmod.mosiqi.dependencyinjection.AppComponent
-import com.merkmod.mosiqi.dependencyinjection.AppModule
-import com.merkmod.mosiqi.dependencyinjection.DaggerAppComponent
+import android.content.SharedPreferences
+import com.merkmod.mosiqi.dependencyinjection.*
+import com.wealthfront.magellan.Navigator
+import timber.log.Timber
 
 /**
  * Created by rkodekar on 6/19/17.
  */
 class MosiqiApp: Application() {
 
-    var appComponent: AppComponent? = null
+    lateinit var component: MosiqiComponent
+    lateinit var navigator: Navigator
+    lateinit var sharePreference: SharedPreferences
 
     override fun onCreate() {
-        resolveDependency()
         super.onCreate()
-    }
+        Timber.plant(Timber.DebugTree())
 
-    fun resolveDependency() {
-        appComponent = DaggerAppComponent.builder().appModule(AppModule(this@MosiqiApp)).build()
+        component = DaggerMosiqiComponent.builder().contextModule(ContextModule(this)).build()
+        navigator = component.getNavigator()
+        sharePreference = component.getSharedPreference()
+
     }
 
     companion object {
-        fun getAppComponent(context: Context) = (context.applicationContext as MosiqiApp).appComponent
+        fun injector(activity: Activity) = activity.application as MosiqiApp
     }
 }

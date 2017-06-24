@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
+<com.github.florent37.carpaccio.Carpaccio
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/carpaccioLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:register="com.github.florent37.carpaccio.controllers.RecyclerViewController;
+            com.github.florent37.carpaccio.controllers.TextViewController;
+            com.github.florent37.carpaccio.controllers.ImageViewController;
+            com.github.florent37.carpaccio.controllers.ParallaxViewController;">
+
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="songs" />
-</android.support.design.widget.CoordinatorLayout>
+        android:id="@+id/root"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/song_rec"
+            android:tag="registerParallax();
+                         adapter(songs, R.layout.song_item);">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</com.github.florent37.carpaccio.Carpaccio>

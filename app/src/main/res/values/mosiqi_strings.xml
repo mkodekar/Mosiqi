@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="permission_storage_rationale">Storage permissions are needed to access songs on the devices</string>
+    <string name="permission_storage_available">Storage Permissions have been granted.</string>
+    <string name="permission_storage_unavailable">Storage permission are not granted, please exit</string>
+</resources>
